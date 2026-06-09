@@ -53,6 +53,11 @@ All code written must adhere to the following rules
 
 ### Do's
 
+**Describe only what the comment sits on**:
+
+- A comment may describe only the code it sits on — what it is, does, or means. Never what's done with it, what happens to it later, or how another unit works; that belongs where that code lives.
+- A value (data, event, enum, constant, parameter) has no behavior — state what each part means, not its journey through the system.
+
 **Unobvious Why**:
 
 - Why — the reason behind a choice the code can't show.
@@ -60,10 +65,6 @@ All code written must adhere to the following rules
 **API Boundary**:
 
 - Describe how to use it, not how it works. A consumer should be able to use it correctly from the comment alone, without reading the implementation or depending on details the contract doesn't promise.
-
-**Keep comments adjacent and current**:
-
-- Place each comment beside what it describes, not other modules or the wider architecture.
 
 **Prose Clarity**:
 
