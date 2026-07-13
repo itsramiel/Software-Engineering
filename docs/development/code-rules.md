@@ -81,6 +81,12 @@ All code written must adhere to the following rules
 
 - No tickets, plans, or change log.
 
+**Don't comment the making-of**:
+
+- The circumstances that produced the code — the question that prompted it, the bug just fixed, what the author had to learn along the way — are invisible to the reader, who sees only the code as it stands.
+- Judge what needs saying against the code's audience — a competent engineer in this stack — not against whoever raised the point that led to the change.
+- Test: would someone writing this file fresh, knowing nothing of how the code came to be, still write this comment? If no, cut it.
+
 **Don't excuse bad code with comments**:
 
 - A comment can't redeem confusing code — rename, extract, or restructure instead.
