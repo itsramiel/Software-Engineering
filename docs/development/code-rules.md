@@ -51,8 +51,6 @@ All code written must adhere to the following rules
 
 ## Comments
 
-### Do's
-
 **Describe only what the comment sits on**:
 
 - A comment may describe only the code it sits on — what it is, does, or means. Never what's done with it, what happens to it later, or how another unit works; that belongs where that code lives.
@@ -69,8 +67,6 @@ All code written must adhere to the following rules
 **Prose Clarity**:
 
 - Use complete, dense, well-punctuated sentences a reader understands without decoding.
-
-### Don'ts
 
 **Don't comment the obvious**:
 
