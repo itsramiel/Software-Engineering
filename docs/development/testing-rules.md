@@ -13,6 +13,8 @@
 **Test Behavior, Not Implementation**:
 
 - Assert on observable outputs and public contracts, never private internals or call order.
+- Avoid tautological test restates the implementation instead of checking behavior.
+- Avoid tests that fail in response to any change to the production code even when the observable behavior is unchanged.
 
 **Cover Edge Cases And Errors**:
 
