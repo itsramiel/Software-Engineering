@@ -1,3 +1,8 @@
+---
+name: writing-tests
+description: Provides rules on how to write tests in software. Use whenever writing, editing, reviewing, or planning software tests.
+---
+
 # Testing Rules
 
 **Make Tests Deterministic**:
@@ -36,4 +41,4 @@
 
 **Treat Tests As Production Code**:
 
-- Hold tests to the same review, naming, and readability standards as shipping code
+- Hold tests to the same review, naming, and readability standards as production code
