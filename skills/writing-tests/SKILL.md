@@ -3,6 +3,8 @@ name: writing-tests
 description: Provides rules on how to write tests in software. Use whenever writing, editing, reviewing, or planning software tests.
 ---
 
+Use /writing-code skill. Tests is code, so the rules there apply as well
+
 # Testing Rules
 
 **Make Tests Deterministic**:
