@@ -1,3 +1,8 @@
+---
+name: writing-tests
+description: Provides rules on how to write code in software. Use whenever writing, editing, reviewing, or planning software code.
+---
+
 # Code Rules
 
 All code written must adhere to the following rules
