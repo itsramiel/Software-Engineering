@@ -44,3 +44,7 @@ Use /writing-code skill. Tests is code, so the rules there apply as well
 **Treat Tests As Production Code**:
 
 - Hold tests to the same review, naming, and readability standards as production code
+
+**Naming**:
+
+- Name tests using Given, When, Then as a single sentence
