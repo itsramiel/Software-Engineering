@@ -1,5 +1,9 @@
 # Software Engineering
 
-[Writing Code](docs/skills/writing-code): covers writing code standards.
-[Writing Tests](docs/skills/writing-tests): covers writing tests standards.
-[Writing Documentation](docs/skills/writing-documentation): covers writing technical documentation.
+- [Writing Code](skills/writing-code): covers writing code standards.
+- [Writing Tests](skills/writing-tests): covers writing tests standards.
+- [Writing Documentation](skills/writing-documentation): covers writing technical documentation.
+
+## Android
+
+- [Disable Stylus Handwriting](skills/android/disable-stylus-handwriting): brings up the full on-screen keyboard on Android emulators.
