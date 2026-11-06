@@ -1,8 +1,10 @@
 # Software Engineering
 
-- [Writing Code](skills/writing-code): covers writing code standards.
-- [Writing Tests](skills/writing-tests): covers writing tests standards.
-- [Writing Documentation](skills/writing-documentation): covers writing technical documentation.
+## General
+
+- [Writing Code](skills/general/writing-code): covers writing code standards.
+- [Writing Tests](skills/general/writing-tests): covers writing tests standards.
+- [Writing Documentation](skills/general/writing-documentation): covers writing technical documentation.
 
 ## Android
 
