@@ -78,15 +78,19 @@ All code written must adhere to the following rules
 - Cut comments that echo the syntax, name, or signature.
 - Skip line-by-line narration and trailing notes that a competent engineer could understand by reading the code or docs
 
-**History & Planning**
-
-- No tickets, plans, or change log.
-
 **Don't comment the making-of**:
 
-- The circumstances that produced the code — the question that prompted it, the bug just fixed, what the author had to learn along the way — are invisible to the reader, who sees only the code as it stands.
+- Leave out the circumstances that produced the code, such as the question that prompted it or what the author had to learn along the way, because the reader sees only the code as it stands.
+- Don't describe what the code used to be or how it changed. If an old approach is a trap someone might bring back, warn against it as a rule about the code as it stands.
+- Don't reference the work that produced the code: plans, specs, task lists, steps, phases. A link to a source that explains why the code is this way, such as a bug report, an upstream issue, or a discussion, is welcome.
 - Judge what needs saying against the code's audience — a competent engineer in this stack — not against whoever raised the point that led to the change.
-- Test: would someone writing this file fresh, knowing nothing of how the code came to be, still write this comment? If no, cut it.
+- Test: would the comment make sense to, and help, a reader who knows nothing of how the code came to be? If no, cut it.
+
+Recommended: `// Don't batch these writes. The driver deadlocks on concurrent flushes.`
+Not recommended: `// Changed from batched writes to sequential to fix a deadlock.`
+
+Recommended: `// Works around Safari firing resize before layout settles. See #482.`
+Not recommended: `// Implements step 3 of the auth migration plan (#310).`
 
 **Don't excuse bad code with comments**:
 
