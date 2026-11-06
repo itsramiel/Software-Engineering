@@ -3,7 +3,7 @@ name: writing-tests
 description: Provides rules on how to write tests in software. Use whenever writing, editing, reviewing, or planning software tests.
 ---
 
-Use /writing-code skill. Tests is code, so the rules there apply as well
+Use /writing-code skill. Tests are code, so the rules there apply as well
 
 # Testing Rules
 
@@ -20,7 +20,7 @@ Use /writing-code skill. Tests is code, so the rules there apply as well
 **Test Behavior, Not Implementation**:
 
 - Assert on observable outputs and public contracts, never private internals or call order.
-- Avoid tautological test restates the implementation instead of checking behavior.
+- Avoid tautological tests that restate the implementation instead of checking behavior.
 - Avoid tests that fail in response to any change to the production code even when the observable behavior is unchanged.
 
 **Cover Edge Cases And Errors**:
