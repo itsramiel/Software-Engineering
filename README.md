@@ -5,6 +5,7 @@
 - [Writing Code](skills/general/writing-code): covers writing code standards.
 - [Writing Tests](skills/general/writing-tests): covers writing tests standards.
 - [Writing Documentation](skills/general/writing-documentation): covers writing technical documentation.
+- [UI Evidence](skills/general/ui-evidence): covers choosing screenshots or video as evidence of UI work.
 
 ## Android
 
