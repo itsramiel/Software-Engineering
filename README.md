@@ -6,6 +6,7 @@
 - [Writing Tests](skills/general/writing-tests): covers writing tests standards.
 - [Writing Documentation](skills/general/writing-documentation): covers writing technical documentation.
 - [UI Evidence](skills/general/ui-evidence): covers choosing screenshots or video as evidence of UI work.
+- [Report](skills/general/report): reports a target as it is.
 - [RCA](skills/general/rca): performs a root cause analysis on a target.
 
 ## Android
