@@ -13,6 +13,10 @@
 
 - [Disable Stylus Handwriting](skills/android/disable-stylus-handwriting): brings up the full on-screen keyboard on Android emulators.
 
+## Apple
+
+- [HealthKit Query Anchor](skills/apple/healthkit-query-anchor): explains how HealthKit query anchors work.
+
 ## GitHub
 
 - [gh Attachments](skills/github/gh-attachments): attaches images and videos to issues, PRs and comments with `gh`.
