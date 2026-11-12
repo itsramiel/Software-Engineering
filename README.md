@@ -8,6 +8,7 @@
 - [UI Evidence](skills/general/ui-evidence): covers choosing screenshots or video as evidence of UI work.
 - [Report](skills/general/report): reports a target as it is.
 - [RCA](skills/general/rca): performs a root cause analysis on a target.
+- [Plan Review](skills/general/plan-review): reviews a plan before implementation.
 
 ## Android
 
