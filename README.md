@@ -9,6 +9,7 @@
 - [Report](skills/general/report): reports a target as it is.
 - [RCA](skills/general/rca): performs a root cause analysis on a target.
 - [Plan Review](skills/general/plan-review): reviews a plan before implementation.
+- [ELI Intern](skills/general/eli-intern): explains a target from the ground up.
 
 ## Android
 
