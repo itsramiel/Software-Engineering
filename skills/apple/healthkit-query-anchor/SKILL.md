@@ -40,7 +40,7 @@ Most of this document comes from closed-source code. Sections end with a collaps
 
 - **Documented**: public documentation states it. The entry links to it.
 - **Observed**: read from the HealthKit or HealthDaemon binary. The entry names the function, string, or constant.
-- **Tested**: run on macOS 26.5.1.
+- **Tested**: run locally.
 - **Inferred**: follows from observed code, but not run. The entry names the code it rests on.
 
 The closed-source material comes from two places:
@@ -235,12 +235,15 @@ healthd checks the token before it uses `rowid` (see [A token from another app](
 
 `latestAnchor` is a class method that the public SDK doesn't declare. Its `rowid` is above every row; [A `rowid` above the newest row](#a-rowid-above-the-newest-row) shows what a query does with it. On 64-bit devices, `HKQueryAnchor(fromValue: Int.max)` builds an equal anchor.
 
+Two anchors are equal only when their `rowid` and their token both match. A `newAnchor` from a query carries a token, so it never equals `HKQueryAnchor(fromValue:)` at the same `rowid`.
+
 <details>
 <summary>Sources</summary>
 
 - **`nil` as 0.** Observed: `-[HDDataEntityEnumerator _prepareDeletedObjectsAndSamplesDescriptor:error:]` reads the anchor with `longLongValue`, which returns 0 for `nil`, and adds `data_id > anchor` only when the value is 1 or more.
 - **`init(fromValue:)`.** Observed: `+[HKQueryAnchor anchorFromValue:]` calls the private `+_anchorWithRowid:` with the value and sets no token. Documented: [`init(fromValue:)`][fromvalue].
-- **`latestAnchor`.** Observed: `+[HKQueryAnchor latestAnchor]` sets `rowid` to `0x7FFFFFFFFFFFFFFF` and sets no token; no SDK header declares it. Tested: printed it and `HKQueryAnchor(fromValue: Int.max)`; both show `rowid` 9223372036854775807 and no token, and `isEqual:` returns `YES`.
+- **`latestAnchor`.** Observed: `+[HKQueryAnchor latestAnchor]` sets `rowid` to `0x7FFFFFFFFFFFFFFF` and sets no token; no SDK header declares it. Tested on macOS 26.5.1: printed it and `HKQueryAnchor(fromValue: Int.max)`; both show `rowid` 9223372036854775807 and no token, and `isEqual:` returns `YES`.
+- **Equality.** Observed: `-[HKQueryAnchor isEqual:]` compares `_rowid`, then `_clientToken`, and `-[HKQueryAnchor hash]` combines both. Tested on an iOS 26.5 simulator: a `newAnchor` at row 6 from a steps query wasn't equal to `HKQueryAnchor(fromValue: 6)`, and two anchors from `HKQueryAnchor(fromValue: 6)` were equal.
 
 </details>
 
@@ -305,14 +308,14 @@ In the example, the query selects D and the deletion of A, so `newAnchor` holds 
 
 ### A `rowid` above the newest row
 
-Before it selects rows, healthd reads the highest `data_id` among sample rows. If the anchor's `rowid` is higher, healthd replaces the anchor with one at that `data_id`. An anchor from `latestAnchor` therefore starts at the newest existing row, and so does one from `HKQueryAnchor(fromValue: Int.max)`.
+Before it selects rows, healthd reads the highest row number in the `samples` table. That table has a row for every sample and every deletion record (see [What a deletion writes](#what-a-deletion-writes)), of every type. The query's types and predicate don't narrow it. If the anchor's `rowid` is higher, healthd replaces the anchor with one at that row number. An anchor from `latestAnchor` therefore starts at the newest existing row, and so does one from `HKQueryAnchor(fromValue: Int.max)`.
 
 In the example, a steps query with `latestAnchor` starts at 106. It selects no rows, so its `newAnchor` holds 106, and the query after it selects only rows added after 106.
 
 <details>
 <summary>Sources</summary>
 
-- **Lowering.** Observed: `-[HDAnchoredObjectQueryServer _queue_start]` calls `+[HDSampleEntity maxRowIDForPredicate:healthDatabase:error:]`, compares the result with `_rowid`, and calls `+_anchorWithRowid:`.
+- **Lowering.** Observed: `-[HDAnchoredObjectQueryServer _queue_start]` calls `+[HDSampleEntity maxRowIDForPredicate:healthDatabase:error:]` with a `nil` predicate, which reads `MAX(samples.ROWID)`. If `_rowid` is greater than the result, it calls `+_anchorWithRowid:` with the result. Tested on an iOS 26.5 simulator: an empty store got three rows: 1, step sample A added; 2, step sample B added; 3, A deleted. A query with `HKQueryAnchor(fromValue: Int.max)` returned no rows and a `newAnchor` at 3. A query for respiratory rate, which had no rows, gave the same result.
 
 </details>
 
@@ -336,9 +339,9 @@ flowchart TD
     A["Anchor passed in<br/>(nil acts as rowid 0)"] --> B{"Has a token?"}
     B -- no --> D
     B -- yes --> C{"Token matches the<br/>calling app's token?"}
-    C -- yes --> D{"rowid above the highest<br/>sample data_id?"}
+    C -- yes --> D{"rowid above the highest<br/>row in samples?"}
     C -- no --> N["Discard the anchor:<br/>start from rowid 0"]
-    D -- yes --> E["Lower rowid to the<br/>highest sample data_id"]
+    D -- yes --> E["Lower rowid to that row"]
     D -- no --> F
     E --> F
     N --> F["Select rows above the starting rowid:<br/>filter, order by data_id, limit"]
@@ -413,7 +416,7 @@ remove a deletion record when
 - **Pruning rule.** Observed: `+[HDDeletedSampleSyncEntity _basePruningPredicateForDate:profile:]` passes `HKDeletedSamplesAvailableDays` to `hd_predicateForDeletedObjectsCreatedBeforeDate:minusDays:`; `+[HDDataSyncEntity _pruningPredicateWithDate:profile:anchor:]` excludes rows above the sync anchor.
 - **`creation_date` holds the deletion time.** Observed: `+[HDDeletedObjectEntity insertDeletedObject:provenanceIdentifier:deletionDate:inDatabase:error:]` binds `creation_date` to the deletion date.
 - **28 days.** Observed: `-[HDDatabasePruningTask _minimumFrozenAnchorMapForPruningDate:error:]` reads the lowest sync anchors updated within the last 2,419,200 seconds.
-- **14 days.** Tested: value of `HKDeletedSamplesAvailableDays` read at runtime.
+- **14 days.** Tested on macOS 26.5.1: value of `HKDeletedSamplesAvailableDays` read at runtime.
 - **Sync stores.** Observed: `sync_stores` and `cloud_sync_stores` schema strings.
 
 </details>
