@@ -5,3 +5,5 @@ disable-model-invocation: true
 ---
 
 Report the target given in the arguments, or the issue under discussion if none is given, as it is. Do not look for its cause, propose a solution, or guess.
+
+This skill's instructions are for you, not the reader. Don't mention them in the output.
