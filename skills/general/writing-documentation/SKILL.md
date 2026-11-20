@@ -8,8 +8,9 @@ This style guide provides editorial guidelines for writing clear and consistent 
 [Anthropomorphism](#anthropomorphism)\
 [Future Features](#future-features)\
 [Active Voice](#active-voice)\
-[Avoid excessive claims](#avoid-excessive-claims)
-[Timeless documentation](#timeless-documentation)
+[Avoid excessive claims](#avoid-excessive-claims)\
+[Timeless documentation](#timeless-documentation)\
+[Write edits as the current state](#write-edits-as-the-current-state)
 
 ## Anthropomorphism
 
@@ -89,3 +90,23 @@ Not Recommended: The following command-line options aren't currently supported:
 
 Recommended: The emulator supports the following filters:\
 Not Recommended: The emulator now supports the following filters:
+
+## Write edits as the current state
+
+When you correct documentation, write the new text as if it had always said that. The reader sees only the current version. They don't know what the old text claimed, and they don't need to.
+
+- Don't tell the story of the change, such as "it used to" or "before, it said". See [Timeless documentation](#timeless-documentation).
+- Don't deny a claim the old text made. State what is true.
+- Drop words that only make sense next to the old text, such as just, actually, in fact, and no longer.
+- State a negative only when a reader who never saw the old text would likely assume the wrong thing. Test: would the sentence help a reader who never saw the old version? If no, cut it.
+
+This applies to text that describes how things are. Text that describes a change, such as a commit message or a PR description, can name the old text.
+
+Recommended: The cache keeps responses for five minutes.\
+Not recommended: The cache keeps responses for five minutes, not an hour.
+
+Recommended: The function returns the first match.\
+Not recommended: The function actually returns the first match.
+
+Recommended: `save()` doesn't write to disk. Call `sync()` before the process exits.\
+Not recommended: `save()` no longer writes to disk.
