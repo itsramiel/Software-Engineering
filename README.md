@@ -10,6 +10,8 @@
 - [RCA](skills/general/rca): performs a root cause analysis on a target.
 - [Plan Review](skills/general/plan-review): reviews a plan before implementation.
 - [ELI Intern](skills/general/eli-intern): explains a target from the ground up.
+- [Grilling](skills/general/grilling): interviews the user about a plan in rounds of questions (forked from [mattpocock/skills](https://github.com/mattpocock/skills)).
+- [Grill Me](skills/general/grill-me): starts a grilling session on request (forked from [mattpocock/skills](https://github.com/mattpocock/skills)).
 
 ## Android
 
