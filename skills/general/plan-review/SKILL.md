@@ -6,7 +6,7 @@ context: fork
 agent: general-purpose
 background: false
 arguments: [altitude, plan]
-argument-hint: [design|implementation] [plan]
+argument-hint: "[design|implementation] [plan]"
 ---
 
 Review the `$altitude` plan at `$plan` before anyone implements it. Three checkers do the checking; you start them and merge what they find.
