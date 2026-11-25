@@ -1,0 +1,20 @@
+name: Skills
+
+# No paths filter: the ruleset on main requires the frontmatter check, and a
+# required check that a filter skips stays pending and blocks the merge.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Test the frontmatter check
+        run: ruby scripts/test/check_skill_frontmatter_test.rb
+      - name: Check skill frontmatter
+        run: ruby scripts/check-skill-frontmatter.rb
