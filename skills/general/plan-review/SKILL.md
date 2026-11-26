@@ -45,13 +45,13 @@ If no plan location was given, reply "No plan given: pass a path or URL." and st
 >
 > - **Plan:** the claim or step, quoted or pointed at.
 > - **Problem:** what is wrong.
-> - **Evidence:** file:line, doc URL, or the command you ran and its output. If you found none, write **unverified** and say what you tried.
+> - **Evidence:** file:line, doc URL, or the command you ran and its output. A finding needs evidence.
 > - **Effect:** what this means for the plan, in plain words.
 >
 > If the check finds nothing, return "No findings" and what you checked.
 
 ## Design paragraph
 
-> The plan is a design: it settles mechanisms, contracts and behavior, and leaves the coding to an implementation pass. A finding is a **decision** the plan still needs: a mechanism that can't deliver a goal, parts that contradict, or a behavior or contract left open. Where an implementer could resolve a problem from what the plan already says, it belongs to the implementation pass. Use current code as evidence where the design relies on it staying as it is; where the plan's stated behavior changes the code, the code will differ from the plan.
+> The plan is a design: it settles behavior, contracts and how parts interact, and leaves the coding to an implementation pass. A finding is a **decision** the plan still needs: a behavior the plan can't deliver, parts that contradict, or a behavior or contract left open. Choosing how to deliver a behavior the plan already sets belongs to the implementation pass, even when the plan names a mechanism: check a named mechanism only for whether it delivers the behavior. Use current code as evidence where the design relies on it staying as it is; where the plan's stated behavior changes the code, the code will differ from the plan.
 >
-> After **Effect:**, add a **Decision:** field to each finding: the choice the plan still has to make. If the plan already makes that choice, the problem belongs to the implementation pass.
+> After **Effect:**, add a **Decision:** field to each finding: the design decision the plan still has to make. If the decision is how to deliver a behavior the plan already sets, leave the finding out.
